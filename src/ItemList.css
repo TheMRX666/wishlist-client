@@ -1,0 +1,165 @@
+/* Общие стили для страницы */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7f6; /* Более мягкий и приятный фон */
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.item-list-container {
+  width: 100%;
+  max-width: 1200px;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 2.8em; /* Немного уменьшили размер заголовка */
+  color: #3a4a5c; /* Более спокойный темно-синий */
+  margin-bottom: 40px; /* Уменьшили отступ */
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.08); /* Меньше тени */
+}
+
+.item-grid {
+  display: grid;
+  /* Змінюємо на дві колонки, залишаючи адаптивність */
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  justify-content: center;
+  align-items: stretch;
+  max-width: 900px; /* Обмежуємо ширину для кращого вигляду в 2 колонки */
+  margin: 0 auto; /* Центруємо сітку */
+}
+
+/* Медіа-запит для мобільних пристроїв */
+@media (max-width: 768px) {
+  .item-grid {
+    grid-template-columns: 1fr; /* На мобільних одна колонка */
+  }
+}
+
+/* Стили для отдельной карточки */
+.item-card {
+  background: linear-gradient(135deg, #eaf6ff 0%, #fff0f5 100%); /* Более нежный градиент */
+  border-radius: 15px; /* Меньше скругления */
+  padding: 20px; /* Уменьшили внутренние отступы */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08), 0 4px 4px rgba(0, 0, 0, 0.04); /* Меньше и мягче тень */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  min-height: 200px; /* Уменьшили минимальную высоту */
+}
+
+.item-card:hover:not(.booked) {
+  transform: translateY(-8px) scale(1.01); /* Меньше эффект при наведении */
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1), 0 6px 8px rgba(0, 0, 0, 0.06);
+}
+
+/* Иконка подарка внутри карточки */
+.item-icon {
+  font-size: 2.5em; /* Уменьшили размер иконки */
+  margin-bottom: 10px; /* Уменьшили отступ */
+  filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.15)); /* Меньше тени для иконки */
+}
+
+.item-name {
+  font-size: 1.5em; /* Уменьшили размер текста названия */
+  font-weight: 600;
+  color: #3a4a5c; /* Используем тот же спокойный темно-синий */
+  margin-bottom: 15px; /* Уменьшили отступ */
+  text-align: center;
+  line-height: 1.3;
+}
+
+/* Кнопка "Забронировать" */
+.book-button {
+  background: linear-gradient(45deg, #76c893 0%, #99d98c 100%); /* Более нежный зеленый */
+  color: #2c3e50; /* Темный текст для контраста */
+  border: none;
+  padding: 10px 20px; /* Уменьшили padding */
+  border-radius: 25px; /* Меньше скругления */
+  cursor: pointer;
+  font-size: 1em; /* Меньше шрифт */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  box-shadow: 0 4px 10px rgba(118, 200, 147, 0.3); /* Меньше тень кнопки */
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.book-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(118, 200, 147, 0.5);
+}
+
+.book-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(118, 200, 147, 0.2);
+}
+
+/* Стили для забронированной карточки */
+.item-card.booked {
+  background: linear-gradient(135deg, #dcdcdc 0%, #e0e0e0 100%); /* Светлый серый градиент */
+  color: #666;
+  pointer-events: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.item-card.booked .item-name {
+  color: #555;
+}
+
+.item-card.booked:hover {
+  transform: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Сообщение о бронировании */
+.booked-message {
+  font-size: 1em; /* Меньше шрифт */
+  font-weight: 600;
+  color: #28a745; /* Зеленый цвет */
+  padding: 6px 12px; /* Меньше padding */
+  border-radius: 18px; /* Меньше скругления */
+  background-color: rgba(40, 167, 69, 0.08); /* Очень легкий фон */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.booked-message span {
+  font-size: 1.1em; /* Чуть больше иконка */
+}
+
+/* Ленточка для забронированных */
+.ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-top: 40px solid #e74c3c; /* Красный цвет ленты */
+  border-left: 40px solid transparent;
+  transform: rotate(45deg);
+  z-index: 1;
+}
+
+/* Анимация появления */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
