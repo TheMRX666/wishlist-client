@@ -38,7 +38,7 @@ const ItemList = () => {
 
   return (
     <div className="item-list-container">
-      <h1 className="main-title">✨ Wish List ✨</h1>
+      <h1 className="main-title">✨ Wish List Dmitry Korch✨</h1>
       <div className="item-grid">
         {items.map(item => (
           <div key={item.id} className={`item-card ${item.isbooked ? 'booked' : ''}`}>
